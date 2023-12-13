@@ -1,0 +1,23 @@
+server:
+  port : 8080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          jdbc:
+            time_zone: UTC
+    show-sql: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/employee_db
+    username: postgres
+    password: postgres
+
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    group-id: my-group-id
+    auto-offset-reset: earliest
