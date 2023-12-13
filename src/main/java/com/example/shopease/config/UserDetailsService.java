@@ -1,7 +1,7 @@
 package com.example.shopease.config;
 
-import com.example.authserver.entity.User;
-import com.example.authserver.repository.UserRepository;
+import com.example.shopease.entity.User;
+import com.example.shopease.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
