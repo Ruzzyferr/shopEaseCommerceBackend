@@ -1,10 +1,7 @@
 package com.example.shopease.controller;
 
 import com.example.shopease.config.JwtService;
-import com.example.shopease.dto.LoginBackDto;
-import com.example.shopease.dto.LoginDto;
-import com.example.shopease.dto.UserDto;
-import com.example.shopease.dto.UserSaveRequestDto;
+import com.example.shopease.dto.*;
 import com.example.shopease.entity.User;
 import com.example.shopease.repository.UserRepository;
 import com.example.shopease.service.UserService;
@@ -65,6 +62,24 @@ public class UserController {
         } else {
             return new ResponseEntity<>("Invalid token", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PostMapping
+    public ResponseEntity<String> deactivateUser(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7); // "Bearer " ifadesini çıkartıyoruz
+            Optional<User> gecici = userRepository.findByUsername(
+                    jwtService.getUsernameToken(token));
+            gecici.get().setActive(false);
+
+            return new ResponseEntity<>(
+                    "User deactivated succesfully, you wont get mail anymore", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid token", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 }

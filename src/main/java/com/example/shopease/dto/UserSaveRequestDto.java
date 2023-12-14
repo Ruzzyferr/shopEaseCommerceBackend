@@ -19,4 +19,6 @@ public class UserSaveRequestDto {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private boolean isActive;
+
 }
